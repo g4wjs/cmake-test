@@ -33,7 +33,7 @@ set (UISRCS
 
 set (MACOSX_ICON_FILE logo.png)
 set_source_files_properties (${MACOSX_ICON_FILE} PROPERTIES
-  MACOSX_PACKAGE_LOCTION Resources
+  MACOSX_PACKAGE_LOCATION Resources
   )
 
 #
