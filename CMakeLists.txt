@@ -35,6 +35,7 @@ set (MACOSX_ICON_FILE logo.png)
 set_source_files_properties (${MACOSX_ICON_FILE} PROPERTIES
   MACOSX_PACKAGE_LOCATION Resources
   )
+set (MACOSX_BUNDLE_ICON_FILE ${MACOSX_ICON_FILE})
 
 #
 # versioning
@@ -73,7 +74,7 @@ qt5_wrap_ui (GENUISRCS ${UISRCS})
 #
 # build product
 #
-add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS})
+add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS} ${MACOSX_ICON_FILE})
 qt5_use_modules (cmake-test Widgets)
 
 set_target_properties (
@@ -118,8 +119,6 @@ set (CPACK_PROJECT_CONFIG_FILE "${CMAKE_SOURCE_DIR}/CPackOptions.cmake")
 set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 set (CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
 set (CPACK_RESOURCE_FILE_WELCOME "${CMAKE_SOURCE_DIR}/WELCOME")
-
-set (MACOSX_BUNDLE_ICON_FILE ${MACOSX_ICON_FILE})
 
 if (APPLE)
   set (CPACK_GENERATOR "DragNDrop")
