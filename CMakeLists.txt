@@ -31,6 +31,11 @@ set (UISRCS
   MainWindow.ui
   )
 
+set (MACOSX_ICON_FILE logo.png)
+set_source_files_properties (${MACOSX_ICON_FILE} PROPERTIES
+  MACOSX_PACKAGE_LOCTION Resources
+  )
+
 #
 # versioning
 #
@@ -74,7 +79,7 @@ qt5_use_modules (cmake-test Widgets)
 set_target_properties (
   cmake-test
   PROPERTIES
-  MACOSX_BUNDLE_ICON_FILE "${cmake-test_SOURCE_DIR}/logo.png"
+  MACOSX_BUNDLE_ICON_FILE Resources/${MACOSX_ICON_FILE}
   )
 
 #
@@ -85,6 +90,10 @@ install (TARGETS cmake-test
   RUNTIME DESTINATION bin COMPONENT Runtime
   LIBRARY DESTINATION lib COMPONENT Libraries
   ARCHIVE DESTINATION lib COMPONENT Libraries
+  )
+
+install (FILES logo.png
+  DESTINATION share COMPONENT Runtime
   )
 
 #
