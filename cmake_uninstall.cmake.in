@@ -1,0 +1,33 @@
+# ----------------------------------------------------------------------------
+# "THE BEER-WARE LICENSE" (Revision 42):
+#
+# <g4wjs@classdesign.com> modified this file from the original by
+# Poul-Henning Kamp <phk@FreeBSD.ORG>. As long as you retain this
+# notice you can do whatever you want with this stuff. If we meet some
+# day, and you think this stuff is worth it, you can buy me a beer in
+# return Bill Somerville.
+# ----------------------------------------------------------------------------
+
+if (NOT EXISTS "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt")
+  message (FATAL_ERROR "Cannot find install manifest: \"@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt\"")
+endif ()
+
+file (READ "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt" files)
+string (REGEX REPLACE "\n" ";" files "${files}")
+foreach (file ${files})
+  message (STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")
+  if (EXISTS "$ENV{DESTDIR}${file}")
+    execute_process (
+      COMMAND @CMAKE_COMMAND@ -E remove $ENV{DESTDIR}${file}
+      OUTPUT_VARIABLE rm_out
+      ERROR_VARIABLE rm_err
+      RESULT_VARIABLE rm_retval
+      )
+    if ("${rm_retval}" STREQUAL 0)
+    else ()
+      message (FATAL_ERROR "Problem when removing \"$ENV{DESTDIR}${file}\"\n${rm_err}")
+    endif ()
+  else ()
+    message (STATUS "File \"$ENV{DESTDIR}${file}\" does not exist.")
+  endif ()
+endforeach ()
