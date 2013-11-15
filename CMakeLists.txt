@@ -71,6 +71,12 @@ qt5_wrap_ui (GENUISRCS ${UISRCS})
 add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS})
 qt5_use_modules (cmake-test Widgets)
 
+set_target_properties (
+  cmake-test
+  PROPERTIES
+  MACOSX_BUNDLE_ICON_FILE "${cmake-test_SOURCE_DIR}/logo.png"
+  )
+
 #
 # install
 #
