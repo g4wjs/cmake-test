@@ -117,6 +117,9 @@ install (TARGETS cmake-test
   LIBRARY DESTINATION lib COMPONENT Libraries
   ARCHIVE DESTINATION lib COMPONENT Libraries
   )
+install (FILES ${GENQMFILES}
+  DESTINATION bin/translations COMPONENT Runtime
+  )
 
 #
 # uninstall support
