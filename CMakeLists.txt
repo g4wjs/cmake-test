@@ -46,7 +46,6 @@ set (MACOSX_BUNDLE_ICON_FILE ${MACOSX_ICON_FILE})
 set (TSSRCS
   translations/cmake-test_fr.ts
   )
-set (I18NSRCS ${CXXSRCS})
 
 #
 # versioning
@@ -87,16 +86,20 @@ qt5_add_resources (GENRESOURCES cmake-test.qrc)
 #
 # i18n
 #
+set (I18NSRCS
+  ${CXXSRCS}
+  ${GENUISRCS}
+  )
 if (UPDATE_TRANSLATIONS)
-  qt5_create_translation (GENQMSRCS ${I18NSRCS} ${TSSRCS})
+  qt5_create_translation (GENQMFILES ${I18NSRCS} ${TSSRCS})
 else (UPDATE_TRANSLATIONS)
-  qt5_add_translation (GENQMSRCS ${TSSRCS})
+  qt5_add_translation (GENQMFILES ${TSSRCS})
 endif (UPDATE_TRANSLATIONS)
 
 #
 # build product
 #
-add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS} ${GENRESOURCES} ${GENQMSRCS} ${MACOSX_ICON_FILE})
+add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS} ${GENRESOURCES} ${GENQMFILES} ${MACOSX_ICON_FILE})
 qt5_use_modules (cmake-test Widgets)
 
 set_target_properties (
