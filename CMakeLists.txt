@@ -13,6 +13,12 @@ cmake_minimum_required (VERSION 2.8.9)
 project (cmake-test C CXX)
 
 #
+# options
+#
+option (UPDATE_TRANSLATIONS "Update source translation translations/*.ts
+files (WARNING: make clean will delete the source .ts files! Danger!)")
+
+#
 # CMake policies
 #
 if (POLICY CMP0020)
@@ -36,6 +42,11 @@ set_source_files_properties (${MACOSX_ICON_FILE} PROPERTIES
   MACOSX_PACKAGE_LOCATION Resources
   )
 set (MACOSX_BUNDLE_ICON_FILE ${MACOSX_ICON_FILE})
+
+set (TSSRCS
+  translations/cmake-test_fr.ts
+  )
+set (I18NSRCS ${CXXSRCS})
 
 #
 # versioning
@@ -63,6 +74,7 @@ endif (APPLE)
 # Qt5 setup
 #
 find_package (Qt5Widgets REQUIRED)
+find_package (Qt5LinguistTools REQUIRED)
 set (CMAKE_AUTOMOC ON)
 set (CMAKE_INCLUDE_CURRENT_DIR ON) # pick up generated source files in binary directory
 
@@ -70,11 +82,21 @@ set (CMAKE_INCLUDE_CURRENT_DIR ON) # pick up generated source files in binary di
 # generate sources
 #
 qt5_wrap_ui (GENUISRCS ${UISRCS})
+qt5_add_resources (GENRESOURCES cmake-test.qrc)
+
+#
+# i18n
+#
+if (UPDATE_TRANSLATIONS)
+  qt5_create_translation (GENQMSRCS ${I18NSRCS} ${TSSRCS})
+else (UPDATE_TRANSLATIONS)
+  qt5_add_translation (GENQMSRCS ${TSSRCS})
+endif (UPDATE_TRANSLATIONS)
 
 #
 # build product
 #
-add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS} ${MACOSX_ICON_FILE})
+add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS} ${GENRESOURCES} ${GENQMSRCS} ${MACOSX_ICON_FILE})
 qt5_use_modules (cmake-test Widgets)
 
 set_target_properties (

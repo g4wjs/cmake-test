@@ -16,7 +16,7 @@
 class MainWindow final
 {
 public:
-  explicit MainWindow ();
+  MainWindow ();
   ~MainWindow ();
 
 private:

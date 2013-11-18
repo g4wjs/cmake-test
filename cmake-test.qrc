@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/resources">
+    <file alias="text">texts/text.rtf</file>
+</qresource>
+</RCC>

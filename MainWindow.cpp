@@ -10,8 +10,6 @@
 
 #include "MainWindow.hpp"
 
-#include <memory>
-
 #include <QObject>
 #include <QMainWindow>
 #include <QSettings>
@@ -29,7 +27,7 @@ class MainWindow::impl final
   Q_DISABLE_COPY (impl);
 
  public:
-  explicit impl (MainWindow *);
+  impl ();
 
  private:
   void read_settings ();
@@ -38,13 +36,12 @@ class MainWindow::impl final
   Q_SLOT void closeEvent (QCloseEvent * e) override;
 
   MainWindow * self_;		// back pointer
-  std::unique_ptr<Ui::MainWindow> ui_;
+  Ui::MainWindow ui_;
 };
 
 #include "MainWindow.moc"
 
 MainWindow::MainWindow ()
-  : m_ {this}
 {
 }
 
@@ -52,13 +49,17 @@ MainWindow::~MainWindow ()
 {
 }
 
-MainWindow::impl::impl (MainWindow * self)
+MainWindow::impl::impl ()
   : QMainWindow {}
-  , self_ {self}
-  , ui_ {new Ui::MainWindow}
 {
-  ui_->setupUi (this);
+  ui_.setupUi (this);
+
   read_settings ();
+
+  //: This label refers to the text browser
+  ui_.text_label->setText (QMainWindow::tr ("Text:", "browser"));
+  ui_.text_browser->setSource (QUrl {"qrc:/resources/text"});
+
   show ();
 }
 
