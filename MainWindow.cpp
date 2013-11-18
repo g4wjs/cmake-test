@@ -35,7 +35,6 @@ class MainWindow::impl final
 
   Q_SLOT void closeEvent (QCloseEvent * e) override;
 
-  MainWindow * self_;		// back pointer
   Ui::MainWindow ui_;
 };
 
@@ -57,7 +56,7 @@ MainWindow::impl::impl ()
   read_settings ();
 
   //: This label refers to the text browser
-  ui_.text_label->setText (QMainWindow::tr ("Text:", "browser"));
+  ui_.text_label->setText (tr ("Text:", "browser"));
   ui_.text_browser->setSource (QUrl {"qrc:/resources/text"});
 
   show ();
