@@ -23,10 +23,11 @@
 <context>
     <name>MainWindow::impl</name>
     <message>
+        <location filename="../MainWindow.cpp" line="60"/>
         <source>Text:</source>
         <comment>browser</comment>
         <extracomment>This label refers to the text browser</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Texte:</translation>
     </message>
 </context>
 </TS>
