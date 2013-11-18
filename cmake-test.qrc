@@ -1,5 +1,8 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/resources">
-    <file alias="text">texts/text.rtf</file>
+    <file alias="text.rtf">texts/text.rtf</file>
+</qresource>
+<qresource prefix="/resources" lang="fr">
+    <file alias="text.rtf">texts/text_fr.rtf</file>
 </qresource>
 </RCC>

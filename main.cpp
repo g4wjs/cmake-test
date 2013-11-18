@@ -13,13 +13,12 @@
 
 #include <locale.h>
 
+#include <QDebug>
 #include <QApplication>
 #include <QSettings>
 #include <QObject>
-#include <QTranslator>
-#include <QLibraryInfo>
-#include <QLocale>
 
+#include "I18N.hpp"
 #include "MainWindow.hpp"
 
 int main (int argc, char * argv[])
@@ -37,16 +36,9 @@ int main (int argc, char * argv[])
       application.setOrganizationDomain ("classdesign.com");
       application.setApplicationName ("cmake-test");
 
-      // set up i18n
-      QString locale_name {QLocale::system ().name ()};
+      qDebug () << "locale name =" << QLocale::system ().name ();
 
-      QTranslator qt_translator;
-      qt_translator.load ("qt_" + locale_name, QLibraryInfo::location (QLibraryInfo::TranslationsPath));
-      application.installTranslator (&qt_translator);
-
-      QTranslator translator;
-      translator.load ("cmake-test_" + locale_name);
-      application.installTranslator (&translator);
+      I18N i18n ("translations");
 
       // create main window
       MainWindow main_window;

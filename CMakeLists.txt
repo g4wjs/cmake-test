@@ -30,7 +30,9 @@ endif (POLICY CMP0020)
 #
 set (CXXSRCS
   main.cpp
+  I18N.cpp
   MainWindow.cpp
+  MainWindow.hpp
   )
 
 set (UISRCS
@@ -43,6 +45,10 @@ set_source_files_properties (${MACOSX_ICON_FILE} PROPERTIES
   )
 set (MACOSX_BUNDLE_ICON_FILE ${MACOSX_ICON_FILE})
 
+set (I18NSRCS
+  ${CXXSRCS}
+  ${UISRCS}
+  )
 set (TSSRCS
   translations/cmake-test_fr.ts
   )
@@ -86,10 +92,6 @@ qt5_add_resources (GENRESOURCES cmake-test.qrc)
 #
 # i18n
 #
-set (I18NSRCS
-  ${CXXSRCS}
-  ${GENUISRCS}
-  )
 if (UPDATE_TRANSLATIONS)
   qt5_create_translation (GENQMFILES ${I18NSRCS} ${TSSRCS})
 else (UPDATE_TRANSLATIONS)

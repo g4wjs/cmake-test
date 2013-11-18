@@ -4,18 +4,22 @@
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="../MainWindow.ui" line="14"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.ui" line="62"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.ui" line="28"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../MainWindow.ui" line="45"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -23,7 +27,7 @@
 <context>
     <name>MainWindow::impl</name>
     <message>
-        <location filename="../MainWindow.cpp" line="60"/>
+        <location filename="../MainWindow.cpp" line="59"/>
         <source>Text:</source>
         <comment>browser</comment>
         <extracomment>This label refers to the text browser</extracomment>
