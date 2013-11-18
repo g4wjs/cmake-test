@@ -56,7 +56,7 @@ MainWindow::impl::impl ()
   read_settings ();
 
   //: This label refers to the text browser
-  ui_.text_label->setText (tr ("Text:", "browser"));
+  ui_.text_label->setText (MainWindow::impl::tr ("Text:", "browser"));
   ui_.text_browser->setSource (QUrl {"qrc:/resources/text"});
 
   show ();
