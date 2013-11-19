@@ -18,6 +18,8 @@
 
 #include "pimpl_impl.hpp"
 
+#include "config.h"
+
 class I18N::impl final
 {
  public:

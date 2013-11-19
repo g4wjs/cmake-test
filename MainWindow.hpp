@@ -11,6 +11,8 @@
 // beer in return Bill Somerville.
 // ----------------------------------------------------------------------------
 
+#include "config.h"
+
 #include "pimpl_h.hpp"
 
 class MainWindow final

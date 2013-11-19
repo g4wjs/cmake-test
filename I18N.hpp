@@ -15,6 +15,8 @@
 
 #include "pimpl_h.hpp"
 
+#include "config.h"
+
 class I18N final
 {
 public:

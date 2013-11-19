@@ -18,6 +18,8 @@
 #include <QSettings>
 #include <QObject>
 
+#include "config.h"
+
 #include "I18N.hpp"
 #include "MainWindow.hpp"
 
@@ -35,6 +37,7 @@ int main (int argc, char * argv[])
       application.setOrganizationName ("Class Design Ltd.");
       application.setOrganizationDomain ("classdesign.com");
       application.setApplicationName ("cmake-test");
+      application.setApplicationVersion ("v" CMAKE_TEST_STRINGIZE (CMAKE_TEST_VERSION_MAJOR) "." CMAKE_TEST_STRINGIZE (CMAKE_TEST_VERSION_MINOR) "." CMAKE_TEST_STRINGIZE (CMAKE_TEST_VERSION_PATCH) "-" CMAKE_TEST_STRINGIZE (SCM_VERSION));
 
       qDebug () << "locale name =" << QLocale::system ().name ();
 

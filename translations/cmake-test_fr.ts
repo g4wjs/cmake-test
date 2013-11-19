@@ -27,7 +27,7 @@
 <context>
     <name>MainWindow::impl</name>
     <message>
-        <location filename="../MainWindow.cpp" line="59"/>
+        <location filename="../MainWindow.cpp" line="63"/>
         <source>Text:</source>
         <comment>browser</comment>
         <extracomment>This label refers to the text browser</extracomment>

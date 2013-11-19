@@ -1,0 +1,26 @@
+/* ----------------------------------------------------------------------------
+ * "THE BEER-WARE LICENSE" (Revision 42):
+ *
+ * <g4wjs@classdesign.com> modified this file from the original by
+ * Poul-Henning Kamp <phk@FreeBSD.ORG>. As long as you retain this
+ * notice you can do whatever you want with this stuff. If we meet
+ * some day, and you think this stuff is worth it, you can buy me a
+ * beer in return Bill Somerville.
+ * --------------------------------------------------------------------------*/
+
+#ifndef CONFIG_H__
+#define CONFIG_H__
+
+#include "scm_version.h"
+
+#define CMAKE_TEST_VERSION_MAJOR @cmake-test_VERSION_MAJOR@
+#define CMAKE_TEST_VERSION_MINOR @cmake-test_VERSION_MINOR@
+#define CMAKE_TEST_VERSION_PATCH @cmake-test_VERSION_PATCH@
+#define CMAKE_TEST_VERSION_TWEAK @cmake-test_VERSION_TWEAK@
+#cmakedefine CMAKE_TEST_RC @cmake-test_RC@
+#cmakedefine01 CMAKE_TEST_VERSION_IS_RELEASE
+
+#define CMAKE_TEST_STRINGIZE1(x) #x
+#define CMAKE_TEST_STRINGIZE(x) CMAKE_TEST_STRINGIZE1(x)
+
+#endif

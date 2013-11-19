@@ -9,8 +9,8 @@
 # ----------------------------------------------------------------------------
 
 # Version number components
-set (cmake-test_VERSION_MAJOR 0)
-set (cmake-test_VERSION_MINOR 0)
-set (cmake-test_VERSION_PATCH 1)
-set (cmake-test_VERSION_TWEAK 20131104)
-#set (cmake-test_RC 1)
+set (${CMAKE_PROJECT_NAME}_VERSION_MAJOR 0)
+set (${CMAKE_PROJECT_NAME}_VERSION_MINOR 0)
+set (${CMAKE_PROJECT_NAME}_VERSION_PATCH 1)
+set (${CMAKE_PROJECT_NAME}_VERSION_TWEAK 20131104)
+#set (${CMAKE_PROJECT_NAME}_RC 1)

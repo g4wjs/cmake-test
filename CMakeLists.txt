@@ -54,11 +54,6 @@ set (TSSRCS
   )
 
 #
-# versioning
-#
-include (Version.cmake)
-
-#
 # compiler setup
 #
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
@@ -108,6 +103,33 @@ set_target_properties (
   cmake-test
   PROPERTIES
   MACOSX_BUNDLE_ICON_FILE Resources/${MACOSX_ICON_FILE}
+  )
+
+#
+# versioning
+#
+
+# include the output directory, where the scm_version.h file is generated
+include_directories (${CMAKE_CURRENT_BINARY_DIR})
+
+# a custom target that is always built
+add_custom_target (revisiontag ALL)
+
+# creates scm_version.h using cmake script
+add_custom_command (TARGET revisiontag
+  COMMAND ${CMAKE_COMMAND} -DSOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/SCMVersion.cmake)
+
+# explicitly say that the executable depends on custom target
+add_dependencies (cmake-test revisiontag)
+
+#
+# configuration
+#
+include (Version.cmake)
+
+configure_file (
+  "${PROJECT_SOURCE_DIR}/config.h.in"
+  "${PROJECT_BINARY_DIR}/config.h"
   )
 
 #

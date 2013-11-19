@@ -14,6 +14,8 @@
 #include <QMainWindow>
 #include <QSettings>
 
+#include "config.h"
+
 #include "pimpl_impl.hpp"
 
 #include "ui_MainWindow.h"
@@ -54,6 +56,8 @@ MainWindow::impl::impl ()
   ui_.setupUi (this);
 
   read_settings ();
+
+  setWindowTitle (QApplication::applicationName () + " - " + QApplication::applicationVersion ());
 
   //: This label refers to the text browser
   ui_.text_label->setText (MainWindow::impl::tr ("Text:", "browser"));
