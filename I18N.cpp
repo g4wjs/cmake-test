@@ -10,6 +10,7 @@
 
 #include "I18N.hpp"
 
+#include <QDebug>
 #include <QString>
 #include <QTranslator>
 #include <QLibraryInfo>
@@ -28,7 +29,6 @@ class I18N::impl final
  private:
   QTranslator qt_translator_;
   QTranslator default_translator_;
-  QTranslator deployment_translator_;
 };
 
 I18N::I18N (QString const& translations_path, QString const& encoding)
@@ -46,9 +46,22 @@ I18N::impl::impl (QString const& translations_path, QString const& /* encoding *
   // QTextCodec::setCodecForTr (QTextCodec::codecForName (encoding.toLatin1 ()));
 
   // set up i18n
-  qt_translator_.load (QLocale::system (), "qt", "_", QLibraryInfo::location (QLibraryInfo::TranslationsPath));
-  QCoreApplication::installTranslator (&qt_translator_);
+  auto locale = QLocale::system ();
+  if (qt_translator_.load (locale, "qt", "_", QLibraryInfo::location (QLibraryInfo::TranslationsPath)))
+    {
+      QCoreApplication::installTranslator (&qt_translator_);
+    }
+  else
+    {
+      qDebug () << "failed to load Qt translations for user locale";
+    }
 
-  default_translator_.load (QLocale::system (), "cmake-test", "_", translations_path);
-  QCoreApplication::installTranslator (&default_translator_);
+  if (default_translator_.load (locale, "cmake-test", "_", translations_path))
+    {
+      QCoreApplication::installTranslator (&default_translator_);
+    }
+  else
+    {
+      qDebug () << "failed to load translations for user locale";
+    }
 }

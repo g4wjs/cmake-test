@@ -96,7 +96,11 @@ endif (UPDATE_TRANSLATIONS)
 #
 # build product
 #
-add_executable (cmake-test WIN32 MACOSX_BUNDLE ${CXXSRCS} ${GENUISRCS} ${GENRESOURCES} ${GENQMFILES} ${MACOSX_ICON_FILE})
+add_executable (cmake-test ${CXXSRCS} ${GENUISRCS} ${GENRESOURCES} ${GENQMFILES} ${MACOSX_ICON_FILE})
+if (NOT CMAKE_BUILD_TYPE STREQUAL Debug)
+   set_target_properties (cmake-test PROPERTIES WIN32_EXECUTABLE 1 MACOSX_BUNDLE 1)
+endif (NOT CMAKE_BUILD_TYPE STREQUAL Debug)
+
 qt5_use_modules (cmake-test Widgets)
 
 set_target_properties (
